@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BusMarga</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
-            font-family: cursive;
+            font-family: lora;
             margin: 0;
             padding: 0;
             background-color: lightcyan;
             color: #333;
-        }
+            text-align: center;
+            overflow-x: hidden;
+}
         header {
             background-color: orangered;
             color: white;
@@ -19,7 +23,56 @@
             text-align: center;
             font-size: 24px;
             font-weight: bold;
-        }
+            animation: fadeIn 1s ease-in-out;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+}
+.faq-container {
+  width: 80%;
+  margin: auto;
+  font-family: lora;
+  text-align: left;
+}
+
+.faq-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 0px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.faq-question {
+  font-family: lora;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  display: none;
+  padding: 15px;
+  font-size: 14px;
+  color: #333;
+  border-top: 1px solid #ddd;
+  text-align: left;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
         nav {
             display: flex;
             justify-content: center;
@@ -33,17 +86,20 @@
             padding: 10px 15px;
             font-size: 18px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        nav a:hover, nav a.active {
-            background-color: lightblue;
-            border-radius: 5px;
+            transition: 0.3s ease;
         }
         .content {
             display: none;
             padding: 20px;
+            text-align: left;
             text-align: center;
             font-size: 22px;
+            background: url('bus-bg.jpg') no-repeat center center/cover;
+            padding: 150px 20px;
+            color: black;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: slideIn 1s ease-in-out;
+            margin-top: 70px;
         }
         .details{
             text-align: left;
@@ -58,79 +114,232 @@
             background-color: lightcyan;
             border-radius: 10px;
         }
-        .btn {
-            font-family: cursive;
-            padding: 10px 20px;
-            font-size: 18px;
-            color: white;
-            background-color: orangered;
-            border: none;
-            cursor: pointer;
-            border-radius: 15px;
-            text-decoration: none;
-        }
         .dropdown, .input {
-            font-family: cursive;
+            font-family: lora;
             padding: 10px 20px;
             font-size: 15px;
             color: black;
             border-radius: 10px;
         }
-        .btn:hover {
-            background-color: lightblue;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+nav ul li a:hover {
+    color: orangered;
+}
+.menu-bar{
+    color: lightcyan;
+}
+.cta-button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.1s;
+    font-family: lora;
+    padding: 10px 20px;
+    font-size: 18px;       
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: black;
+    border-radius: 15px;
+    transition: background 0.3s, transform 0.1s;
+}
+.cta-button:hover {
+    background: orangered;
+    transform: scale(1.05);
+}
+.about {
+    padding: 50px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 50px auto;
+    width: 80%;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+.about img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.social-media {
+    background: #ddd;
+    padding: 30px;
+}
+.icons a {
+    margin: 10px;
+    font-size: 28px;
+    color: #ff4500;
+    transition: color 0.3s, transform 0.2s;
+}
+.icons a:hover {
+    color: orangered;
+    transform: scale(1.2);
+}
+.animated-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.1s, transform 0s;
+}
+.animated-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let elements = document.querySelectorAll(".animated-element");
+            let observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            });
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
 </head>
 <body>
 
     <header>
-        BusMarga - A Public Transport Guide
+        <nav>
+            <div class="logo">BusMarga</div>
+            <ul>
+                <li><a class="nav-link"onclick="showSection('home')">Home</a></li>
+                <li><a class="nav-link" onclick="showSection('routes')">Routes</a></li>
+                <li><a class="nav-link" onclick="showSection('bookings')">Bookings</a></li>
+                <li><a class="nav-link" onclick="showSection('contact')">Contact</a></li>
+                <li><a class="nav-link" onclick="showSection('offers')">Offers</a></li>
+                <li><a class="nav-link" onclick="showSection('viewcart')"><i class="fas fa-shopping-cart"></i></a></li>
+            </ul>
+        </nav>
     </header>
-
-    <nav>
-        <a class="nav-link active" onclick="showSection('home')">Home</a>
-        <a class="nav-link" onclick="showSection('routes')">Routes</a>
-        <a class="nav-link" onclick="showSection('bookings')">Bookings</a>
-        <a class="nav-link" onclick="showSection('contact')">Contact</a>
-        <a class="nav-link" onclick="showSection('offers')">Offers</a>
-        <a class="nav-link" onclick="showSection('viewcart')">View Cart</a>
-    </nav>
     <div id="home" class="content active-section">
-        <p>Welcome to BusMarga!</p>
-        <p>Your seamless travel booking experience starts here.</p><br>
-    <div class="details">
-    <p>Our Aim: </p>
-    <p>BusMarga aims to solve day-to-day issues that public travelers face, making 
-        public transport more efficient and user-friendly. The primary goal of this 
-        project is to provide a platform where users can easily find necessary routes 
-        for short-distance public transportation and offer a ticket booking system for
-         long-route travel. By focusing primarily on public transport within Kathmandu 
-         Valley, BusMarga ensures that users have access to detailed information about 
-         various types of public transport facilities available in the valley. Furthermore, 
-         it serves as a guide for longer journeys by providing relevant details on intercity 
-         routes, schedules, and ticketing options.
+        <h1>Welcome to BusMarga</h1>
+        <p>Your seamless travel booking experience starts here.</p>
+        <div class="hero">
+        <a href="#bookings" class="cta-button" onclick="showSection('bookings')">Book Now</a>
+        </div><br><br>
+        <h3 style= "text-align: left;">Our Aim:</h3>
+        <p style="text-align: left; font-size: 14px;">BusMarga aims to solve day-to-day issues that public travelers face, making 
+            public transport more efficient and user-friendly. The primary goal of this 
+            project is to provide a platform where users can easily find necessary routes 
+            for short-distance public transportation and offer a ticket booking system for
+             long-route travel. By focusing primarily on public transport within Kathmandu 
+             Valley, BusMarga ensures that users have access to detailed information about 
+             various types of public transport facilities available in the valley. Furthermore, 
+             it serves as a guide for longer journeys by providing relevant details on intercity 
+             routes, schedules, and ticketing options.
+    
+            One of the key features of BusMarga is its ability to provide real-time updates on bus 
+            routes, traffic conditions, and arrival times, thereby improving reliability and efficiency. 
+            The platform is designed to be accessible to all demographics, including students, elderly 
+            passengers, and new users unfamiliar with Kathmandu’s transport system. Through seamless 
+            integration with digital payment gateways, BusMarga facilitates easy ticket booking, reducing
+             the hassle of standing in long queues for tickets. The platform also aims to foster a culture 
+             of shared mobility by encouraging carpooling and ride-sharing initiatives, further easing traffic 
+             congestion in the valley.
+            
+            Moreover, BusMarga seeks to enhance public transport safety by implementing security features 
+            such as emergency contact options, feedback mechanisms, and real-time tracking. By addressing key 
+            pain points such as lack of information, inefficiency, and safety concerns, BusMarga is set to 
+            revolutionize the public transport experience in Kathmandu Valley, making it more convenient, reliable,
+             and inclusive.</p>
+        <div class="faq-container">
+            <h3 style="text-align: left;">Frequently Asked Questions</h3>
+          
+            <div class="faq-item">
+              <button class="faq-question">
+                What Is BusMarga?
+                <span class="arrow">▼</span>
+              </button>
+              <div class="faq-answer">
+                <p>BusSewa is a platform for booking and managing public transport rides.</p>
+              </div>
+            </div>
+          
+            <div class="faq-item">
+              <button class="faq-question">
+                Do I Need To Register To Use BusMarga?
+                <span class="arrow">▼</span>
+              </button>
+              <div class="faq-answer">
+                <p>No, you can use basic features without registering, but booking requires an account.</p>
+              </div>
+            </div>
+          
+            <div class="faq-item">
+              <button class="faq-question">
+                Does BusMarga Own The Buses?
+                <span class="arrow">▼</span>
+              </button>
+              <div class="faq-answer">
+                <p>No, we partner with local transport services to provide easy ticketing.</p>
+              </div>
+            </div>
+            <script>
+            document.addEventListener("DOMContentLoaded", () => {
+  const faqButtons = document.querySelectorAll(".faq-question");
 
-        One of the key features of BusMarga is its ability to provide real-time updates on bus 
-        routes, traffic conditions, and arrival times, thereby improving reliability and efficiency. 
-        The platform is designed to be accessible to all demographics, including students, elderly 
-        passengers, and new users unfamiliar with Kathmandu’s transport system. Through seamless 
-        integration with digital payment gateways, BusMarga facilitates easy ticket booking, reducing
-         the hassle of standing in long queues for tickets. The platform also aims to foster a culture 
-         of shared mobility by encouraging carpooling and ride-sharing initiatives, further easing traffic 
-         congestion in the valley.
-        
-        Moreover, BusMarga seeks to enhance public transport safety by implementing security features 
-        such as emergency contact options, feedback mechanisms, and real-time tracking. By addressing key 
-        pain points such as lack of information, inefficiency, and safety concerns, BusMarga is set to 
-        revolutionize the public transport experience in Kathmandu Valley, making it more convenient, reliable,
-         and inclusive.
-    </p>
-    </div></div>
+  faqButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const answer = button.nextElementSibling;
+      const arrow = button.querySelector(".arrow");
 
-    <div id="routes" class="content">
+      // Hide all answers except the clicked one
+      document.querySelectorAll(".faq-answer").forEach((el) => {
+        if (el !== answer) {
+          el.style.display = "none";
+          el.previousElementSibling.querySelector(".arrow").style.transform = "rotate(0deg)";
+        }
+      });
+
+      // Toggle current answer
+      if (answer.style.display === "block") {
+        answer.style.display = "none";
+        arrow.style.transform = "rotate(0deg)";
+      } else {
+        answer.style.display = "block";
+        arrow.style.transform = "rotate(180deg)";
+      }
+    });
+  });
+});
+        </script>
+        </div></div>
+        <div id="routes" class="content">
         <p>Check out our available bus routes for your short distance journey.</p>
-        <button id="viewRoutes" class="btn" >View Routes</button>
-<button class="btn" onclick="window.open('maincodes.html')">View Routes on Map</button>
+        <button id="viewRoutes" class="cta-button" >View Routes</button>
+        <button class="cta-button" onclick="window.open('maincodes.html')">View Routes on Map</button>
 
 <div id="routeDetails" style="display: none; margin-top: 20px; padding: 10px; border: 1px solid #ccc; font-size: medium; text-align: left;">
 </div>
@@ -145,8 +354,8 @@ document.getElementById("viewRoutes").addEventListener("click", function() {
             ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop
             ←→ Jadibti Stop ←→ Pepsicola Stop ←→ Panika Stop ←→ Siddhikali Chowk Bus Stop
             ←→ Bahakha Bazar Bus Stop ←→ Radheradhe Chowk Bus Stop ←→ Hindunagar Chowk Bus Stop 
-            ←→ Dhungedhara Chowk Bus Stop ←→ Dudhpati Bus Stop
-            <br><li>Lagankhel - Naya Buspark ( Ringroad ):</li>
+            ←→ Dhungedhara Chowk Bus Stop ←→ Dudhpati Bus Stop<br>
+            <li>Lagankhel - Naya Buspark ( Ringroad ):</li>
             Lagankhel Stop ←→ Batuk Bhairav ←→ Lalitpur Industrial Estate ←→ Satdobato ←→ B & B Hospital/KCM stop
             ←→ Gwarko Chok ←→ Koteshwar Stop ←→ Gairigaun Stop ←→ Sinamangal Ring Road Stop ←→ Airport Bus Station ←→ 
             Chabahil ←→ Gopi Krishna Stop ←→ Sukedhara Stop ←→ Chapal Karkhana stop ←→ Narayan Gopal Chok ←→ Basundhara ←→ 
@@ -202,11 +411,11 @@ document.getElementById("viewRoutes").addEventListener("click", function() {
             Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Gairigaun Stop ←→ Sinamangal Ring Road Stop ←→ Airport Bus Station ←→ Gaushala Chok Stop ←→ Chabahil ←→ Hyatt Regency ←→ Boudha ←→ Jorpati ←→ Attarkhel ←→ Purano Bus Park
             <br><li>Kalanki - Balkumari bus routes:</li>
             Kalanki Chowk ←→ Kalimati ←→ Tripureshwar ←→ Thapathali ←→ Maitighar Stop--South ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwar Stop ←→ Balkumari Stop
-            <br><li>Purano Buspark - Shivapuri bus routes:</li>
+            <br><li>Purano Buspark - Shivapuri:</li>
             Purano Bus Park ←→ Deuba Chowk stop ←→ Kantipath ←→ Lainchaur stop ←→ Lazimpat stop ←→ Panipokhari stop ←→ Chakrapath Stop-- South ←→ Bansbari stop ←→ Golfutar stop ←→ Budhanilkantha Micro Stand ←→ Shivapuri Park Stop
-            <br><li>Ratnapark - Dhulikhel bus routes:</li>
+            <br><li>Ratnapark - Dhulikhel:</li>
             Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Tinkune Stop ←→ Jadibuti ←→ Kausaltar ←→ Gathaghar ←→ Thimi ←→ Srijana nagar ←→ Tinkune Bhaktapur ←→ Sallaghari Stop ←→ Chunudevi ←→ Barahi Movies ←→ Suryabinayek ←→ Adarsha ←→ Jagati ←→ Sanga ←→ Bansdol ←→ Banepa Tindobato ←→ Budol BUs Station ←→ Basghari ←→ Dhulikhel Bus Station
-            <br><li>Bagbazar - Kamalbinayak bus routes:</li>
+            <br><li>Bagbazar - Kamalbinayak:</li>
             Bagbazar ←→ Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop ←→ Lokanthali Stop ←→ Gathaghar Stop ←→ Gaushala Chok Stop ←→ Shrijananagar Stop ←→ Dudhpati ←→ Byasi ←→ Kamalbinayak Stop
         </ul>        
     `;
@@ -253,8 +462,8 @@ document.getElementById("viewRoutes").addEventListener("click", function() {
             <input type="number" id="ticketQuantity" class="input" min="1" max="30" value="1" onchange="updateTotalPrice()">
             <br><br>
 
-            <button onclick="a2c()" class="btn">Add to Cart &#128722;</button>    
-            <button onclick="bookNow()" class="btn">Purchase Now &#127915;</button>
+            <button onclick="a2c()" class="cta-button">Add to Cart &#128722;</button>    
+            <button onclick="bookNow()" class="cta-button">Purchase Now &#127915;</button>
 
             <div class="details" id="ticketDetails"></div>
         </div>
@@ -370,6 +579,15 @@ document.getElementById("ticketQuantity").addEventListener("input", showDetails)
             }
         }
     </script>   
+<footer class="social-media">
+    <h3>Connect With Us</h3>
+    <div class="icons">
+        <a href="#" class="fab fa-facebook"></a>
+        <a href="#" class="fab fa-twitter"></a>
+        <a href="#" class="fab fa-instagram"></a>
+        <a href="#" class="fab fa-linkedin"></a>
+        </div>
+        </footer>
 <footer style="text-align: right; position: fixed; bottom: 0; width: 99%">
     Designed & Created by Deekshit G.C. (NEB747)</footer>
 </body>
