@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusMarga</title>
+    <style>
+        body {
+            font-family: cursive;
+            margin: 0;
+            padding: 0;
+            background-color: lightcyan;
+            color: #333;
+        }
+        header {
+            background-color: orangered;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: none;
+            padding: 10px 0;
+            gap: 15px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover, nav a.active {
+            background-color: lightblue;
+            border-radius: 5px;
+        }
+        .content {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+        .details{
+            text-align: left;
+            font-size: medium;
+        }
+        .active-section {
+            display: block;
+        }
+        .booking-container {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: lightcyan;
+            border-radius: 10px;
+        }
+        .btn {
+            font-family: cursive;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: orangered;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+            text-decoration: none;
+        }
+        .dropdown, .input {
+            font-family: cursive;
+            padding: 10px 20px;
+            font-size: 15px;
+            color: black;
+            border-radius: 10px;
+        }
+        .btn:hover {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        BusMarga - A Public Transport Guide
+    </header>
+
+    <nav>
+        <a class="nav-link active" onclick="showSection('home')">Home</a>
+        <a class="nav-link" onclick="showSection('routes')">Routes</a>
+        <a class="nav-link" onclick="showSection('bookings')">Bookings</a>
+        <a class="nav-link" onclick="showSection('contact')">Contact</a>
+        <a class="nav-link" onclick="showSection('offers')">Offers</a>
+        <a class="nav-link" onclick="showSection('viewcart')">View Cart</a>
+    </nav>
+    <div id="home" class="content active-section">
+        <p>Welcome to BusMarga!</p>
+        <p>Your seamless travel booking experience starts here.</p><br>
+    <div class="details">
+    <p>Our Aim: </p>
+    <p>BusMarga aims to solve day-to-day issues that public travelers face, making 
+        public transport more efficient and user-friendly. The primary goal of this 
+        project is to provide a platform where users can easily find necessary routes 
+        for short-distance public transportation and offer a ticket booking system for
+         long-route travel. By focusing primarily on public transport within Kathmandu 
+         Valley, BusMarga ensures that users have access to detailed information about 
+         various types of public transport facilities available in the valley. Furthermore, 
+         it serves as a guide for longer journeys by providing relevant details on intercity 
+         routes, schedules, and ticketing options.
+
+        One of the key features of BusMarga is its ability to provide real-time updates on bus 
+        routes, traffic conditions, and arrival times, thereby improving reliability and efficiency. 
+        The platform is designed to be accessible to all demographics, including students, elderly 
+        passengers, and new users unfamiliar with Kathmandu’s transport system. Through seamless 
+        integration with digital payment gateways, BusMarga facilitates easy ticket booking, reducing
+         the hassle of standing in long queues for tickets. The platform also aims to foster a culture 
+         of shared mobility by encouraging carpooling and ride-sharing initiatives, further easing traffic 
+         congestion in the valley.
+        
+        Moreover, BusMarga seeks to enhance public transport safety by implementing security features 
+        such as emergency contact options, feedback mechanisms, and real-time tracking. By addressing key 
+        pain points such as lack of information, inefficiency, and safety concerns, BusMarga is set to 
+        revolutionize the public transport experience in Kathmandu Valley, making it more convenient, reliable,
+         and inclusive.
+    </p>
+    </div></div>
+
+    <div id="routes" class="content">
+        <p>Check out our available bus routes for your short distance journey.</p>
+        <button id="viewRoutes" class="btn" >View Routes</button>
+<button class="btn" onclick="window.open('maincodes.html')">View Routes on Map</button>
+
+<div id="routeDetails" style="display: none; margin-top: 20px; padding: 10px; border: 1px solid #ccc; font-size: medium; text-align: left;">
+</div>
+
+<script>
+document.getElementById("viewRoutes").addEventListener("click", function() {
+    document.getElementById("routeDetails").innerHTML = `
+        <h3>Public Transport Routes Inside Kathmandu Valley:</h3>
+        <ul>
+            <li>Bhaktapur - Purano Thimi- Purano Buspark:</li>
+            Bagbazar ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station
+            ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop
+            ←→ Jadibti Stop ←→ Pepsicola Stop ←→ Panika Stop ←→ Siddhikali Chowk Bus Stop
+            ←→ Bahakha Bazar Bus Stop ←→ Radheradhe Chowk Bus Stop ←→ Hindunagar Chowk Bus Stop 
+            ←→ Dhungedhara Chowk Bus Stop ←→ Dudhpati Bus Stop
+            <br><li>Lagankhel - Naya Buspark ( Ringroad ):</li>
+            Lagankhel Stop ←→ Batuk Bhairav ←→ Lalitpur Industrial Estate ←→ Satdobato ←→ B & B Hospital/KCM stop
+            ←→ Gwarko Chok ←→ Koteshwar Stop ←→ Gairigaun Stop ←→ Sinamangal Ring Road Stop ←→ Airport Bus Station ←→ 
+            Chabahil ←→ Gopi Krishna Stop ←→ Sukedhara Stop ←→ Chapal Karkhana stop ←→ Narayan Gopal Chok ←→ Basundhara ←→ 
+            Samakhusi Stop ←→ Gongabu Chok ←→ Naya Bus Park
+            <br><li>Purana Buspark - Chabahil bus routes:</li>
+            Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ 
+            Shantinagar Stop ←→ Tinkune Stop ←→ Gairigaun Stop ←→ Sinamangal Ring Road Stop ←→ Airport Bus Station ←→ Gaushala Chok Stop ←→ 
+            Chabahil ←→ Gopikrishna Stop ←→ Dhumbarahi Stop ←→ Chappalkarkhana Stop ←→ Maharajgunj Chowk
+            <br><li>Budhanilkantha School - Ratna Park bus routes:</li>
+            Budhanilkantha School Blue Micro Stand ←→ Budhanilkantha Micro Stand ←→ Golfutar stop ←→ Bansbari stop ←→ Chakrapath Stop-- South ←→ 
+            Panipokhari stop ←→ Lazimpat stop ←→ Lainchaur stop ←→ Kantipath ←→ Ratna Park
+            <br><li>Kalanki - TIA Airport bus routes:</li>
+            Kalanki Chowk ←→ Kalimati ←→ Tripureshwar ←→ Thapathali ←→ Maitighar Stop--South ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ 
+            Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Gairigaun ←→ Sinamangal Stop ←→ Airport Bus Station
+            <br><li>Chakrapath - Parikrama bus routes:</li>
+            Gaushala Chowk Stop ←→ Gopi Krishna Stop ←→ Sukedharastop ←→ Dhumbarahi Stop ←→ Chappal Karkhana Stop ←→ Narayan Gopal Stop ←→ Basundhara Stop ←→ 
+            Samakhushi Stop ←→ Gongabu Stop ←→ Macchapokhari Stop ←→ Balaju stop ←→ Banasthali Stop ←→ Dhungedhara Stop ←→ Sano Bharyang ←→ Thulo Bharyang ←→ 
+            Swyambhu Stop ←→ Kalanki Chowk ←→ Khasibazaar ←→ Balkhu ←→ Sanepa Height ←→ Ekantakuna ←→ Satdobato Stop ←→ Gwarko Stop ←→ Koteshwor Stop ←→ Tinkune Stop ←→ 
+            Sinamangal Stop ←→ Pinglasthan ←→ Gaushala
+            <br><li>Gothatar - Purano Buspark bus routes:</li>
+            Bagbazar ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop ←→ Jadibti Stop ←→ 
+            Pepsicola Stop ←→ Khahare Chowk Bus Stop ←→ Gothatar Stop
+            <br><li>Kalanki - Pepsicola bus routes:</li> 
+             Kalanki Chowk ←→ Kalimati ←→ Tripureshwar ←→ Thapathali ←→ Maitighar Stop--South ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ 
+             Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwar Stop ←→ Jadibuti Stop ←→ Pepsicola Chowk Stop          
+           <br><li>Kamalbinayak - Ratnapark bus routes:</li>
+            Ratnapark ←→ Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop ←→ 
+            Lokanthali Stop ←→ Gathaghar Stop ←→ Shrijananagar Stop ←→ Dudhpati ←→ Byasi ←→ Kamalbinayak Stop
+            <br><li>Purano Bus Park - Sakhu bus routes:</li>
+            Purano Buspark ←→ Tundikhel ←→ Singha Durbar ←→ Maitighar Mandala ←→ Nayabaneshwor ←→ Minbhawan Stop ←→ Shentinagar Stop ←→ Tinkune Stop ←→ Gairigaun Stop ←→ Sinamangal Ring Road Stop ←→ 
+            Airport Bus Station ←→ Gaushala Chok Stop ←→ Chabahil ←→ Hyatt Regency ←→ Boudha ←→ Jorpati ←→ Narayantar Bridge ←→ Mulpani ←→ Thali ←→ Sakhu
+            <br><li>Ratnapark - Chyamasingh bus routes:</li>
+            Bagbazar ←→ Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop ←→ Lokanthali Stop ←→ Gathaghar Stop ←→ Shrijananagar Stop ←→ Sallaghari Stop ←→ Chunudevi ←→ Suotabinayak Stop ←→ Dholeshwor Mahadev Bus Stop ←→ Adarsha Bus Stop ←→ Jagati Bus Stop ←→ Chyamasing Bus Stop
+            <br><li>Kausaltar - Naikap bus routes:</li>
+            Naikap ←→ Kalanki Chowk ←→ Kalimati ←→ Tripureshwor ←→ Thapathali ←→ Maitighar Stop--South ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwar Stop ←→ Jadibuti ←→ Lokanthali ←→ Kausaltar
+            <br><li>Ratnapark - Changu bus routes:</li>
+            Ratnapark ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop ←→ Lokanthali Stop ←→ Gathaghar Stop ←→ Gaushala Chok Stop ←→ Shrijananagar Stop ←→ Dudhpati ←→ Byasi ←→ Changunarayan Road ←→ Changunarayan Stop
+            <br><li>Ratnapark - Panauti bus routes:</li>
+            Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Tinkune Stop ←→ Jadibuti ←→ Kausaltar ←→ Gathaghar ←→ Thimi ←→ Srijana nagar ←→ Tinkune Bhaktapur ←→ Sallaghari Stop ←→ Chunudevi ←→ Barahi Movies ←→ Suryabinayek ←→ Adarsha ←→ Jagati ←→ Sanga ←→ Bansdol ←→ Banepa Tindobato ←→ Khadpu ←→ Panauti
+            <br><li>Purano Bus Park - Budhanilkantha bus routes:</li>
+            Purano Bus Park ←→ Deuba Chowk stop ←→ Kantipath ←→ Lainchaur stop ←→ Lazimpat stop ←→ Panipokhari stop ←→ Chakrapath Stop-- South ←→ Bansbari stop ←→ Golfutar stop ←→ Budhanilkantha Stop
+            <br><li>Jorpati - Purano Bus Park bus routes:</li>
+            Jorpati ←→ Bouddha ←→ Chuchepati ←→ Chabahil ←→ Mitrapark ←→ Gaushala ←→ Battisputali ←→ Purano Baneshwor ←→ Setopul ←→ Dillibazar ←→ Putalisadak ←→ Bagbazar ←→ Purano Buspark
+            <br><li>Ratna Park - Sundarijal bus routes:</li>
+            Ratnapark ←→ Singha Durbar West Stop ←→ Kamalpokhari ←→ Gyanehwor ←→ Ratopul ←→ Gaushala ←→ Mitrapark ←→ Chabahil ←→ Chuchepati ←→ Bouddha ←→ Jorpati ←→ Gokarneshwor Mahadev Temple ←→ Nayapati ←→ Sundarijal
+            <br><li>Gokarna - Chabahil - Naya Buspark - Kalanki bus routes:</li>
+            Gokarna Bus Stop ←→ Jorpati ←→ Boudha ←→ Hyatt Regency ←→ Chabahil ←→ Gopi Krishna Stop ←→ Dhumbarahi ←→ Narayan Gopal Chok ←→ Samakhusi Stop ←→ Naya Bus Park ←→ Balaju ←→ Dhungedhara ←→ Kalanki Chowk
+            <br><li>Nepal Yatayat - Balkumari- Gopi Krishna bus routes:</li>
+            Sukedhara Stop ←→ Dhumbarahi Stop ←→ Chappal Kerkhana ←→ Narayan Gopal Chowk ←→ Baluwatar Bus Stop ←→ Naxal Stop ←→ Mariott Stop ←→ Hattisar Stop ←→ Putali Sadak Stop ←→ New Plaza Bus Stop ←→ Ghattekulo Bus Stop ←→ Hanumansthan Bus Stop ←→ New Baneshwor ←→ Minbhawan Bus Stand ←→ Tinkune Bus Stand ←→ Koteshwor Bus Stand ←→ Balkumari Bus Stop
+            <br><li>Ratna Park - Daksinkali bus routes:</li>
+            Ratnapark ←→ Kalimati ←→ Kuleshwor ←→ Balkhu ←→ Chobar ←→ Taudaha ←→ Chalnakhel Bus Stop ←→ Satikhel ←→ Bhanjyang Bus Stop ←→ Dollu Bus stop ←→ Satikhel Bus Stop ←→ Dakhinkali Temple
+            <br><li>Attarkhel - Purano Buspark bus routes:</li>
+            Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Gairigaun Stop ←→ Sinamangal Ring Road Stop ←→ Airport Bus Station ←→ Gaushala Chok Stop ←→ Chabahil ←→ Hyatt Regency ←→ Boudha ←→ Jorpati ←→ Attarkhel ←→ Purano Bus Park
+            <br><li>Kalanki - Balkumari bus routes:</li>
+            Kalanki Chowk ←→ Kalimati ←→ Tripureshwar ←→ Thapathali ←→ Maitighar Stop--South ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwar Stop ←→ Balkumari Stop
+            <br><li>Purano Buspark - Shivapuri bus routes:</li>
+            Purano Bus Park ←→ Deuba Chowk stop ←→ Kantipath ←→ Lainchaur stop ←→ Lazimpat stop ←→ Panipokhari stop ←→ Chakrapath Stop-- South ←→ Bansbari stop ←→ Golfutar stop ←→ Budhanilkantha Micro Stand ←→ Shivapuri Park Stop
+            <br><li>Ratnapark - Dhulikhel bus routes:</li>
+            Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Tinkune Stop ←→ Jadibuti ←→ Kausaltar ←→ Gathaghar ←→ Thimi ←→ Srijana nagar ←→ Tinkune Bhaktapur ←→ Sallaghari Stop ←→ Chunudevi ←→ Barahi Movies ←→ Suryabinayek ←→ Adarsha ←→ Jagati ←→ Sanga ←→ Bansdol ←→ Banepa Tindobato ←→ Budol BUs Station ←→ Basghari ←→ Dhulikhel Bus Station
+            <br><li>Bagbazar - Kamalbinayak bus routes:</li>
+            Bagbazar ←→ Bhadrakali ←→ Singha Durbar West Stop ←→ Maitighar ←→ Buddhanagar Stop ←→ Naya Baneshwar Bus Station ←→ Minbhawan Stop ←→ Shantinagar Stop ←→ Tinkune Stop ←→ Koteshwor Stop ←→ Lokanthali Stop ←→ Gathaghar Stop ←→ Gaushala Chok Stop ←→ Shrijananagar Stop ←→ Dudhpati ←→ Byasi ←→ Kamalbinayak Stop
+        </ul>        
+    `;
+    document.getElementById("routeDetails").style.display = "block";
+});
+</script>  
+<p style="font-size: medium; text-align: left;">Kathmandu Local Bus Fares (In Nepali Rupees)<br>
+    Here is the current bus fares within Kathmandu Valley based on distance traveled. Please note that fares for exceeding these distances are not included in this update. We recommend consulting local authorities or public transportation stuffs for the most recent fare information.
+    <li style="font-size: medium; text-align: left;">Upto 5 km: Rs. 20</li>
+    <li style="font-size: medium; text-align: left">5-10 km: Rs. 25</li>
+    <li style="font-size: medium; text-align: left">10-15 km: Rs. 30</li>
+    <li style="font-size: medium; text-align: left">15-20 km: Rs. 33</li></p>   
+    </div>
+    <div id="bookings" class="content">
+        <div class="booking-container">
+            <h1>Book Your Bus Tickets Easily</h1>
+            <p>Find the best routes and book your tickets hassle-free.</p>
+            
+            <label for="ticketSelect"></label>
+            <select id="ticketSelect" onchange="showDetails()" class="dropdown">
+                <option value="">See Available Tickets</option>
+                <option value="Kathmandu to Beni">Kathmandu to Beni</option>
+                <option value="Beni to Kathmandu">Beni to Kathmandu</option>
+                <option value="Kathmandu to Pokhara">Kathmandu to Pokhara</option>
+                <option value="Pokhara to Kathmandu">Pokhara to Kathmandu</option>
+                <option value="Kathmandu to Biratnagar">Kathmandu to Biratnagar</option>
+                <option value="Biratnagar to Kathmandu">Biratnagar to Kathmandu</option>
+                <option value="Kathmandu to Butwal">Kathmandu to Butwal</option>
+                <option value="Butwal to Kathmandu">Butwal to Kathmandu</option>
+                <option value="Kathmandu to Jomsom">Kathmandu to Jomsom</option>
+                <option value="Jomsom to Kathmandu">Jomsom to Kathmandu</option>
+                <option value="Kathmandu to Nepalgunj">Kathmandu to Nepalgunj</option> 
+                <option value="Nepalgunj to Kathmandu">Nepalgunj to Kathmandu</option>
+                <option value="Kathmandu to Bharatpur">Kathmandu to Bharatpur</option>
+                <option value="Bharatpur to Kathmandu">Bharatpur to Kathmandu</option>
+                <option value="Kathmandu to Birgunj">Kathmandu to Birgunj</option>
+                <option value="Birgunj to Kathmandu">Birgunj to Kathmandu</option>
+                <option value="Kathmandu to Dhangadhi">Kathmandu to Dhangadhi</option>
+                <option value="Dhangadhi to Kathmandu">Dhangadhi to Kathmandu</option>
+                <option value="Kathmandu to Birtamod">Kathmandu to Birtamod</option>
+                <option value="Birtamod to Kathmandu">Birtamod to Kathmandu</option>
+                </select><br><br>
+            <label for="ticketQuantity"><strong>Select Number of Tickets:</strong></label>
+            <input type="number" id="ticketQuantity" class="input" min="1" max="30" value="1" onchange="updateTotalPrice()">
+            <br><br>
+
+            <button onclick="a2c()" class="btn">Add to Cart &#128722;</button>    
+            <button onclick="bookNow()" class="btn">Purchase Now &#127915;</button>
+
+            <div class="details" id="ticketDetails"></div>
+        </div>
+    </div>
+
+    <div id="contact" class="content">
+        <h1>Contact Us</h1>
+        <p>Need help? Reach out to us anytime.</p>
+    </div>
+
+    <div id="offers" class="content">
+        <h1>Special Offers</h1>
+        <p>Discover exciting discounts and travel deals.</p>
+    </div>
+    <div id="viewcart" class="content">
+        <h1>Here is Your Cart</h1>
+        <p></p>
+    </div>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.content').forEach(section => {
+                section.classList.remove('active-section');
+            });
+    
+            document.getElementById(sectionId).classList.add('active-section');
+    
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+    
+            event.currentTarget.classList.add('active');
+        }
+    
+        const tickets = {
+            "Kathmandu to Beni": {route:"Kathmandu to Beni", departure: "07:00 AM", price: "Rs. 1400", seats: "5" },
+            "Beni to Kathmandu": {route:"Beni to Kathmandu",  departure: "05:00 AM", price: "Rs. 1400", seats: "10" },
+            "Kathmandu to Pokhara": {route:"Kathmandu to Pokhara",  departure: "08:00 AM", price: "Rs. 1000", seats: "20" },
+            "Pokhara to Kathmandu": {route:"Pokhara to Kathmandu",  departure: "06:00 AM", price: "Rs. 1000", seats: "25" },
+            "Kathmandu to Biratnagar": {route:"Kathmandu to Biratnagar",  departure: "7:30 AM", price: "Rs. 1500", seats: "5" },
+            "Biratnagar to Kathmandu": {route:"Biratnagar to Kathmandu",  departure: "10:00 AM", price: "Rs. 1500", seats: "10" },
+            "Kathmandu to Butwal": {route:"Kathmandu to Butwal",  departure: "08:00 AM", price: "Rs. 1300", seats: "18" },
+            "Butwal to Kathmandu": {route:"Butwal to Kathmandu",  departure: "11:00 AM", price: "Rs. 1300", seats: "23" },
+            "Kathmandu to Jomsom": {route:"Kathmandu to Jomsom",  departure: "1:00 PM", price: "Rs. 2100", seats: "22" },
+            "Jomsom to Kathmandu": {route:"Jomsom to Kathmandu",  departure: "2:00 PM", price: "Rs. 2100", seats: "21" },
+            "Kathmandu to Nepalgunj": {route:"Kathmandu to Nepalgunj",  departure: "06:00 AM", price: "Rs. 2000", seats: "14" },
+            "Nepalgunj to Kathmandu": {route:"Nepalgunj to Kathmandu",  departure: "09:00 AM", price: "Rs. 2000", seats: "12" },
+            "Kathmandu to Bharatpur": {route:"Kathmandu to Bharatpur",  departure: "08:00 AM", price: "Rs. 1200", seats: "11" },
+            "Bharatpur to Kathmandu": {route:"Bharatpur to Kathmandu",  departure: "08:00 AM", price: "Rs. 1200", seats: "17" },
+            "Kathmandu to Birgunj": {route:"Kathmandu to Birgunj",  departure: "07:00 AM", price: "Rs. 900", seats: "19" },
+            "Birgunj to Kathmandu": {route:"Birgunj to Kathmandu",  departure: "09:00 AM", price: "Rs. 900", seats: "16" }, <!-- Fixed incorrect "$Rs." -->
+            "Kathmandu to Dhangadhi": {route:"Kathmandu to Dhangadhi",  departure: "10:00 AM", price: "Rs. 3500", seats: "13" },
+            "Dhangadhi to Kathmandu": {route:"Dhangadhi to Kathmandu",  departure: "12:00 PM", price: "Rs. 3500", seats: "15" },
+            "Kathmandu to Birtamod": {route:"Kathmandu to Birtamod",  departure: "05:00 AM", price: "Rs. 2500", seats: "17" },
+            "Birtamod to Kathmandu": {route:"Birtamod to Kathmandu",  departure: "06:00 AM", price: "Rs. 2500", seats: "15" }
+        };
+    
+        function showDetails() {
+    const selected = document.getElementById("ticketSelect").value.trim();
+    const detailsDiv = document.getElementById("ticketDetails");
+    const ticketQuantityInput = document.getElementById("ticketQuantity"); 
+    const ticketQuantity = parseInt(ticketQuantityInput.value, 10) || 1; // Ensure ticketQuantity is a number
+
+    if (selected && tickets[selected]) {
+        const pricePerTicket = parseFloat(tickets[selected].price.replace("Rs.", "").trim()) || 0;
+        const availableSeats = parseInt(tickets[selected].seats, 10) || 0;
+
+        if (ticketQuantity > availableSeats) {
+            detailsDiv.innerHTML = `<p style='color:red;'>Not enough seats available. Only ${availableSeats} seats are available.</p>`;
+            return;
+        }
+
+        const totalPrice = pricePerTicket * ticketQuantity; // Correct multiplication
+
+        detailsDiv.innerHTML = `<p><strong>Route:</strong> ${selected}</p>
+                                <p><strong>Departure:</strong> ${tickets[selected].departure}</p>
+                                <p><strong>Price per Ticket:</strong> Rs. ${pricePerTicket.toFixed(2)}</p>
+                                <p><strong>Seats Available:</strong> ${availableSeats}</p>
+                                <p><strong>Total Price for ${ticketQuantity} Ticket(s):</strong> Rs. ${totalPrice.toFixed(2)}</p>`;
+    } else {
+        detailsDiv.innerHTML = "<p style='color:red;'>Invalid selection! Please choose a valid route.</p>";
+    }
+}
+
+// Ensure the function runs whenever the ticket quantity changes
+document.getElementById("ticketQuantity").addEventListener("input", showDetails);
+
+
+            
+        function bookNow() {
+            const selected = document.getElementById("ticketSelect").value;
+            const ticketQuantity = parseInt(document.getElementById("ticketQuantity").value) || 1;
+    
+            if (selected && tickets[selected]) {
+                const pricePerTicket = parseFloat(tickets[selected].price.replace("Rs.", "").trim()) || 0; 
+                const totalPrice = pricePerTicket * ticketQuantity; 
+    
+                alert(`You have booked ${ticketQuantity} ticket(s) for ${tickets[selected].route}.\nTotal Cost: Rs. ${totalPrice.toFixed(2)}`);
+            } else {
+                alert("Please select a destination first.");
+            }
+        }
+        function a2c(){
+            const selected = document.getElementById("ticketSelect").value;
+            const ticketQuantity = parseInt(document.getElementById("ticketQuantity").value) || 1;
+    
+            if (selected && tickets[selected]) {
+                const pricePerTicket = parseFloat(tickets[selected].price.replace("Rs.", "").trim()) || 0; 
+                const totalPrice = pricePerTicket * ticketQuantity; 
+    
+                alert(`You have added ${ticketQuantity} ticket(s) for ${tickets[selected].route} to cart successfully.\nTotal Cost: Rs. ${totalPrice.toFixed(2)}`);
+            } else {
+                alert("Please select a destination first.");
+            }
+        }
+    </script>   
+<footer style="text-align: right; position: fixed; bottom: 0; width: 99%">
+    Designed & Created by Deekshit G.C. (NEB747)</footer>
+</body>
+</html>

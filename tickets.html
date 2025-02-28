@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BusMarga</title>
+    <style>
+        body {
+            font-family: cursive;
+            margin: 0;
+            padding: 0;
+            background-color: lightcyan;
+            color: #333;
+        }
+        header {
+            background-color: orangered;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+        .container {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .btn {
+            font-family: cursive;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: orangered;
+            border: none;
+            cursor: pointer;
+            border-radius: 15px;
+            text-decoration: none;
+        }
+            .dropdown{
+            font-family: cursive;
+            padding: 10px 20px;
+            font-size: 15px;
+            color: Black;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            background-color: whitesmoke;
+            cursor: pointer;
+            border-radius: 15px;
+            text-decoration: none;
+    }
+        .input{
+            padding: 10px 20px;
+            font-family: cursive;
+            font-size: 15px;
+            width: 5%;
+            border-radius: 10px;
+        }
+        .btn:hover {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        BusMarga - A Public Transport Guide</header>
+    <div class="container">
+        <h1>Book Your Bus Tickets Easily</h1>
+        <p>Find the best routes and book your tickets hassle-free.</p>
+        <label for="dropdown"></label><bR>
+        <select id="ticketSelect" onchange="showDetails()" class="dropdown">
+            <option value="">See Available Tickets</option>
+            <option value="Kathmandu to Beni">Kathmandu to Beni</option>
+            <option value="Beni to Kathmandu">Beni to Kathmandu</option>
+            <option value="Kathmandu to Pokhara">Kathmandu to Pokhara</option>
+            <option value="Pokhara to Kathmandu">Pokhara to Kathmandu</option>
+            <option value="Kathmandu to Biratnagar">Kathmandu to Biratnagar</option>
+            <option value="Biratnagar to Kathmandu">Biratnagar to Kathmandu</option>
+            <option value="Kathmandu to Butwal">Kathmandu to Butwal</option>
+            <option value="Butwal to Kathmandu">Butwal to Kathmandu</option>
+            <option value="Kathmandu to Jomsom">Kathmandu to Jomsom</option>
+            <option value="Jomsom to Kathmandu">Jomsom to Kathmandu</option>
+            <option value="Kathmandu to Nepalgunj">Kathmandu to Nepalgunj</option> 
+            <option value="Nepalgunj to Kathmandu">Nepalgunj to Kathmandu</option>
+            <option value="Kathmandu to Bharatpur">Kathmandu to Bharatpur</option>
+            <option value="Bharatpur to Kathmandu">Bharatpur to Kathmandu</option>
+            <option value="Kathmandu to Birgunj">Kathmandu to Birgunj</option>
+            <option value="Birgunj to Kathmandu">Birgunj to Kathmandu</option>
+            <option value="Kathmandu to Dhangadhi">Kathmandu to Dhangadhi</option>
+            <option value="Dhangadhi to Kathmandu">Dhangadhi to Kathmandu</option>
+            <option value="Kathmandu to Birtamod">Kathmandu to Birtamod</option>
+            <option value="Birtamod to Kathmandu">Birtamod to Kathmandu</option>
+            </select><br><br>
+    <label for="ticketQuantity"><strong>Select Number of Tickets:</strong></label>
+    <input type="number" id="ticketQuantity" class="input" min="1" max="20" value="1" onchange="updateTotalPrice()">
+    <br><br>
+       <button onclick="bookNow()" class="btn" action="ticketportal.html">Add to Cart &#128722;</button>    
+       <button onclick="bookNow()" class="btn" action="ticketportal.html">Purchase Now &#127915;</button>
+        <div class="details" id="ticketDetails"></div>
+        </div>
+        <script>
+            const tickets = {
+            "Kathmandu to Beni": {route:"Kathmandu to Beni", departure: "07:00 AM", price: "Rs. 1400", seats: "15" },
+            "Beni to Kathmandu": {route:"Beni to Kathmandu",  departure: "05:00 AM", price: "Rs. 1400", seats: "10" },
+            "Kathmandu to Pokhara": {route:"Kathmandu to Pokhara",  departure: "08:00 AM", price: "Rs. 1000", seats: "15" },
+            "Pokhara to Kathmandu": {route:"Pokhara to Kathmandu",  departure: "06:00 AM", price: "Rs. 1000", seats: "15" },
+            "Kathmandu to Biratnagar": {route:"Kathmandu to Biratnagar",  departure: "7:30 AM", price: "Rs. 1500", seats: "15" },
+            "Biratnagar to Kathmandu": {route:"Biratnagar to Kathmandu",  departure: "10:00 AM", price: "Rs. 1500", seats: "15" },
+            "Kathmandu to Butwal": {route:"Kathmandu to Butwal",  departure: "08:00 AM", price: "Rs. 1300", seats: "15" },
+            "Butwal to Kathmandu": {route:"Butwal to Kathmandu",  departure: "11:00 AM", price: "Rs. 1300", seats: "15" },
+            "Kathmandu to Jomsom": {route:"Kathmandu to Jomsom",  departure: "1:00 PM", price: "Rs. 2100", seats: "15" },
+            "Jomsom to Kathmandu": {route:"Jomsom to Kathmandu",  departure: "2:00 PM", price: "Rs. 2100", seats: "15" },
+            "Kathmandu to Nepalgunj": {route:"Kathmandu to Nepalgunj",  departure: "06:00 AM", price: "Rs. 2000", seats: "15" },
+            "Nepalgunj to Kathmandu": {route:"Nepalgunj to Kathmandu",  departure: "09:00 AM", price: "Rs. 2000", seats: "15" },
+            "Kathmandu to Bharatpur": {route:"Kathmandu to Bharatpur",  departure: "08:00 AM", price: "Rs. 1200", seats: "15" },
+            "Bharatpur to Kathmandu": {route:"Bharatpur to Kathmandu",  departure: "08:00 AM", price: "Rs. 1200", seats: "10" },
+            "Kathmandu to Birgunj": {route:"Kathmandu to Birgunj",  departure: "07:00 AM", price: "Rs. 900", seats: "15" },
+            "Birgunj to Kathmandu": {route:"Birgunj to Kathmandu",  departure: "09:00 AM", price: "$Rs. 900", seats: "15" },
+            "Kathmandu to Dhangadhi": {route:"Kathmandu to Dhangaghi",  departure: "10:00 AM", price: "Rs. 3500", seats: "15" },
+            "Dhangadhi to Kathmandu": {route:"Dhangadhi to Kathmandu",  departure: "12:00 PM", price: "Rs. 3500", seats: "15" },
+            "Kathmandu to Birtamod": {route:"Kathmandu to Birtamod",  departure: "05:00 AM", price: "Rs. 2500", seats: "15" },
+            "Birtamod to Kathmandu": {route:"Birtamod to Kathmandu",  departure: "06:00 AM", price: "Rs. 2500", seats: "15" }
+        };
+              
+        function showDetails() {
+    const selected = document.getElementById("ticketSelect").value.trim();
+    const detailsDiv = document.getElementById("ticketDetails");
+    const ticketQuantity = parseInt(document.getElementById("ticketQuantity").value) || 1;
+
+    if (selected && tickets[selected]) {
+        const pricePerTicket = parseFloat(tickets[selected].price.replace("Rs.", "")) || 0;
+        const totalPrice = pricePerTicket * ticketQuantity;
+
+        detailsDiv.innerHTML = `<p><strong>Route:</strong> ${selected}</p>
+                                <p><strong>Departure:</strong> ${tickets[selected].departure}</p>
+                                <p><strong>Price per Ticket:</strong> Rs.${pricePerTicket.toFixed(2)}</p>
+                                <p><strong>Seats Available:</strong> ${tickets[selected].seats}</p>
+                                <p><strong>Total Price for ${ticketQuantity} Ticket(s):</strong> Rs.${totalPrice.toFixed(2)}</p>`;
+    } else {
+        detailsDiv.innerHTML = "<p style='color:red;'>Invalid selection! Please choose a valid route.</p>";
+    }
+}
+
+
+
+    function updateTotalPrice() {
+        showDetails();
+    }
+
+    function bookNow() {
+        const selected = document.getElementById("ticketSelect").value;
+        const ticketQuantity = document.getElementById("ticketQuantity").value;
+
+        if (selected && tickets[selected]) {
+            const totalPrice = tickets[selected].price * ticketQuantity;
+            alert(`You have booked ${ticketQuantity} ticket(s) for ${tickets[selected].route}.\nTotal Cost: $${totalPrice}`);
+        } else {
+            alert("Please select a destination first.");
+        }
+    }
+
+            </script>
+</body>
+<footer style="text-align: right; position: fixed; bottom: 0; width: 99%">
+    Designed & Created by Deekshit G.C. (NEB747)</footer>
+</html>

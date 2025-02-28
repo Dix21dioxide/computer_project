@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Bus Animation</title>
+    <style>
+        body {
+            background-color: #dff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .road-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: url('highway.png') repeat-x;
+            animation: moveRoad 5s linear infinite;
+        }
+
+        @keyframes moveRoad {
+            from { background-position: 0 0; }
+            to { background-position: -1000px 0; }
+        }
+
+        .bus {
+            position: absolute;
+            bottom: 50px;
+            left: 20%;
+            width: 200px;
+            animation: bounce 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="road-container">
+        <img src="bus-removebg-preview.png" class="bus" alt="Bus">
+    </div>
+</body>
+</html>
